@@ -1,0 +1,62 @@
+[
+  {
+    "username": "webdev",
+    "password": "$2b$10$FjcSJErLRJ5G5nctqGAZJ.A2IxntUPLLcWECIKtqVEnPWQvqoJ6fC"
+  },
+  {
+    "username": "designer",
+    "password": "$2b$10$FjcSJErLRJ5G5nctqGAZJ.A2IxntUPLLcWECIKtqVEnPWQvqoJ6fC"
+  },
+  {
+    "username": "data",
+    "password": "$2b$10$FjcSJErLRJ5G5nctqGAZJ.A2IxntUPLLcWECIKtqVEnPWQvqoJ6fC"
+  },
+  {
+    "username": "content",
+    "password": "$2b$10$FjcSJErLRJ5G5nctqGAZJ.A2IxntUPLLcWECIKtqVEnPWQvqoJ6fC"
+  },
+  {
+    "username": "marketing",
+    "password": "$2b$10$FjcSJErLRJ5G5nctqGAZJ.A2IxntUPLLcWECIKtqVEnPWQvqoJ6fC"
+  },
+  {
+    "username": "project",
+    "password": "$2b$10$FjcSJErLRJ5G5nctqGAZJ.A2IxntUPLLcWECIKtqVEnPWQvqoJ6fC"
+  },
+  {
+    "username": "business",
+    "password": "$2b$10$FjcSJErLRJ5G5nctqGAZJ.A2IxntUPLLcWECIKtqVEnPWQvqoJ6fC"
+  },
+  {
+    "username": "photographer",
+    "password": "$2b$10$FjcSJErLRJ5G5nctqGAZJ.A2IxntUPLLcWECIKtqVEnPWQvqoJ6fC"
+  },
+  {
+    "username": "fitness",
+    "password": "$2b$10$FjcSJErLRJ5G5nctqGAZJ.A2IxntUPLLcWECIKtqVEnPWQvqoJ6fC"
+  },
+  {
+    "username": "chef",
+    "password": "$2b$10$FjcSJErLRJ5G5nctqGAZJ.A2IxntUPLLcWECIKtqVEnPWQvqoJ6fC"
+  },
+  {
+    "username": "architect",
+    "password": "$2b$10$FjcSJErLRJ5G5nctqGAZJ.A2IxntUPLLcWECIKtqVEnPWQvqoJ6fC"
+  },
+  {
+    "username": "musician",
+    "password": "$2b$10$FjcSJErLRJ5G5nctqGAZJ.A2IxntUPLLcWECIKtqVEnPWQvqoJ6fC"
+  },
+  {
+    "username": "teacher",
+    "password": "$2b$10$FjcSJErLRJ5G5nctqGAZJ.A2IxntUPLLcWECIKtqVEnPWQvqoJ6fC"
+  },
+  {
+    "username": "designer2",
+    "password": "$2b$10$FjcSJErLRJ5G5nctqGAZJ.A2IxntUPLLcWECIKtqVEnPWQvqoJ6fC"
+  },
+  {
+    "username": "fashion",
+    "password": "$2b$10$FjcSJErLRJ5G5nctqGAZJ.A2IxntUPLLcWECIKtqVEnPWQvqoJ6fCd"
+  }
+]
