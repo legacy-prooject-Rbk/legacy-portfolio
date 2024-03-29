@@ -1,11 +1,17 @@
 'use client'
 import { useEffect, useState } from "react";
-import { useRouter } from 'next/navigation'; // Importing next/router for client-side navigation
+;// Importing next/router for client-side navigation
 import axios from "axios";
+import Link from "next/link";
+import { link } from "fs";
+import { useRouter } from "next/navigation"; // Importing useRouter for client-side navigation
+
 
 const Navbar = () => {
     const [portfolio, setPortfolio] = useState<any>(null);
-    const router = useRouter() ; // Using useRouter hook for client-side navigation
+   
+      
+    const router = useRouter() // Using useRouter hook for client-side navigation
     const userId = localStorage.getItem('userId');
 
     useEffect(() => {
@@ -27,7 +33,7 @@ const Navbar = () => {
     const navItems = [
         { id: 0, title: '🏠 Home', path: "/" },
         { id: 1, title: '👤 Login', path: "/login" },
-        { id: 2, title: '👤 Register', path: "/register" }, 
+        { id: 2, title: '👤 Register', path: "/signup" }, 
     ];
 
     const authNavItems = [
@@ -45,9 +51,13 @@ const Navbar = () => {
     };
 
     return (
+
+      
+        
         <nav className="nav-bar">
             <div className="nav-logo" onClick={() => router.push('/')}>
                 ProPlex
+                <h1><Link href={"../auth"}></Link></h1>
             </div>
             <div className="flex mr-auto ml-[200px]">
                 {userId ? (
