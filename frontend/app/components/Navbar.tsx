@@ -1,13 +1,14 @@
 'use client'
 import { useEffect, useState } from "react";
-;// Importing next/router for client-side navigation
+
 import axios from "axios";
 import Link from "next/link";
-import { link } from "fs";
+
 import { useRouter } from "next/navigation"; // Importing useRouter for client-side navigation
 
 
 const Navbar = () => {
+    
     const [portfolio, setPortfolio] = useState<any>(null);
    
       
@@ -50,14 +51,13 @@ const Navbar = () => {
         router.reload();
     };
 
+   
     return (
 
-      
-        
         <nav className="nav-bar">
             <div className="nav-logo" onClick={() => router.push('/')}>
                 ProPlex
-                <h1><Link href={"../auth"}></Link></h1>
+               
             </div>
             <div className="flex mr-auto ml-[200px]">
                 {userId ? (
