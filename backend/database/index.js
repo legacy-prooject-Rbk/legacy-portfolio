@@ -4,10 +4,10 @@ const dotenv = require("dotenv");
 const { DB_CONNECTION, DB_HOST, DB_DATABASE, DB_USERNAME, DB_PASSWORD } =
   dotenv.config().parsed;
 
-const sequelize = new Sequelize(DB_DATABASE, DB_USERNAME, DB_PASSWORD, {
-  host: DB_HOST,
-  dialect: DB_CONNECTION,
-});
+  const sequelize = new Sequelize(DB_DATABASE, DB_USERNAME, DB_PASSWORD, {
+    host: DB_HOST,
+    dialect: DB_CONNECTION,
+  });
 
 sequelize
   .authenticate()
