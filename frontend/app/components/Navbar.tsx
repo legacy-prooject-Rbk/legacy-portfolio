@@ -1,8 +1,8 @@
 'use client'
 import { useEffect, useState } from "react";
 
-import axios from "axios";
-import Link from "next/link";
+// import axios from "axios";
+// import Link from "next/link";
 
 import { useRouter } from "next/navigation"; // Importing useRouter for client-side navigation
 
@@ -15,21 +15,21 @@ const Navbar = () => {
     const router = useRouter() // Using useRouter hook for client-side navigation
     const userId = localStorage.getItem('userId');
 
-    useEffect(() => {
-        if (userId) {
-            fetchPortfolio();
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (userId) {
+    //         fetchPortfolio();
+    //     }
+    // }, []);
 
-    const fetchPortfolio = async () => {
-        try {
-            const { data } = await axios.get(`/api/portfolio/user/${userId}`);
-            setPortfolio(data);
-        } catch (error) {
-            console.error('Error fetching Portfolio ❌\n', error);
-            alert('Error fetching Portfolio ❌');
-        }
-    };
+    // const fetchPortfolio = async () => {
+    //     try {
+    //         const { data } = await axios.get(`/api/portfolio/user/${userId}`);
+    //         setPortfolio(data);
+    //     } catch (error) {
+    //         console.error('Error fetching Portfolio ❌\n', error);
+    //         alert('Error fetching Portfolio ❌');
+    //     }
+    // };
 
     const navItems = [
         { id: 0, title: '🏠 Home', path: "/" },
