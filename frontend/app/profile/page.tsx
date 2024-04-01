@@ -44,16 +44,16 @@ function Profile() {
                     <div className="w-[700px] mx-auto my-3 rounded border-[1px] border-[#909090] overflow-hidden shadow-md bg-white">
                         <div
                             style={{ backgroundImage: `url(${portfolio.backgroundImage})`, backgroundSize: 'cover' }}
-                            className="flex bg-center justify-center items-center bg-gray-100"
+                            className="flex bg-center justify-center items-center bg-gray-100 h-80 "
                         >
                             <img
-                                src={portfolio.photo}
+                                src={portfolio.photo }
                                 alt=""
-                                className="w-36 h-36 rounded-full object-cover bg-center translate-y-[50px]"
+                                className="w-36 h-36 rounded-full object-cover bg-center translate-y-[50px] mr-96 mb-64"
                             />
                         </div>
                         <div className="p-3 mt-[50px]">
-                            <h2 className="text-center text-2xl mt-3 text-orange-400 font-bold">{portfolio.fullName}</h2>
+                            <h2 className="text-center text-2xl mt-3 text-orange-400 font-bold capitalize ">{portfolio.fullName}</h2>
                             <h3 className="text-center text-gray-600 mt-1 font-medium">{portfolio.profession}</h3>
                             <div className="grid grid-cols-2 mt-2 divide-x">
                                 <div className="mt-4 px-3 text-[18px]">

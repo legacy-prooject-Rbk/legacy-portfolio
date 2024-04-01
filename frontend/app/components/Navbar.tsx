@@ -54,12 +54,12 @@ const Navbar = () => {
    
     return (
 
-        <nav className="nav-bar">
+        <nav className="nav-bar bg-amber-600 h-20">
             <div className="nav-logo" onClick={() => router.push('/')}>
                 ProPlex
                
             </div>
-            <div className="flex mr-auto ml-[200px]">
+            <div className="flex mr-auto ml-[200px] space-x-12">
                 {userId ? (
                     authNavItems.map(item => (
                         <div key={item.id} // Ensure each key is unique
