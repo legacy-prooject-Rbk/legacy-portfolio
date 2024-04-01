@@ -3,10 +3,13 @@
 import React,{useState} from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
+import PasswordChecklist from "react-password-checklist"
+
 function Signup() {
    
   const[username,setUsername]=useState<String>("")
   const[password,setPassword]=useState<String>("")
+  const [valid,setValid]=useState<Boolean>(false)
 
   console.log(username,password)
 
@@ -14,15 +17,24 @@ const router = useRouter()
 
 
   const create = (username:String  ,password:String)=>{
+  if(valid){
+
     axios.post("http://localhost:3000/api/users/signup",{
       username:username,
       password:password
     }).then((result)=>{
+      
       console.log(result)
       router.push("/login")
+    
+   
     }).catch((error)=>{
       console.log(error)
     })
+  }
+  else if(valid===false){
+    alert("your password doesn't meet the requirment")
+  }
   }
   return (
   < div className="mx-auto max-w-xs">
@@ -49,7 +61,18 @@ const router = useRouter()
             className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
+            
           />
+          <PasswordChecklist
+				rules={["minLength","specialChar","number","capital"]}
+				minLength={5}
+				value={password}
+				
+				onChange={(isValid) => {
+        if(isValid===true)
+        setValid(true)
+        }}
+			/>
         </div>
         <button
           type="button"
