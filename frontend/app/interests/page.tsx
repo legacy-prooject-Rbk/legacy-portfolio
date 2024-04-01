@@ -1,14 +1,18 @@
 'use client'
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
+
 
 type Interest = {
   id: number;
   name: string;
 };
-type Pathname = string;
-
-const Interests: React.FC = () => {
+// type Props = {
+//     interestsData: Interest[];
+//   };
+  
+  const Interests: React.FC = () => {
   const [interests, setInterests] = useState<Interest[]>([]);
   const [selectedInterests, setSelectedInterests] = useState<number[]>([]);
   const router = useRouter();
@@ -38,7 +42,11 @@ const Interests: React.FC = () => {
     }
   };
 
- 
+  
+
+
+
+
   return (
     <div className="container mx-auto px-4 py-8">
       <h2 className="text-2xl font-bold mb-4">Select your interests:</h2>
@@ -67,16 +75,17 @@ const Interests: React.FC = () => {
           ))}
         </ul>
       </div>
-      <button 
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-8"
-        onClick={() => router.push('/contacts')}
-      >
-        NEXT
-      </button>
+      <Link href={{ pathname: '/contacts', query: { selectedInterests: selectedInterests } }}>
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          NEXT
+          </button>
+      </Link>
     </div>
   );
 };
 
- 
+
+
+  
 
 export default Interests;
