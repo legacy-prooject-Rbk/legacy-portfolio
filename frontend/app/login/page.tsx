@@ -56,8 +56,6 @@ function Login() {
         const id = result.data.payload.userId
         localStorage.setItem("token", token)
         localStorage.setItem("userId", id)
-        // sendsms()
-  
   
         const Portfolio = await axios.get(`http://localhost:3000/api/portfolio/user/${id}`)
         // to get the profile  of an user 
@@ -65,7 +63,7 @@ function Login() {
         console.log(Portfolio)
    
         if (!Portfolio.data) {                /// if the user has no profile he needs to  create a profile 
-          // router.push("/wizard")
+          router.push("/profile/createProfile")
         }
         else if (Portfolio.data) {               /// if  the user has a profile he will be directed to it 
           router.push("/profile")

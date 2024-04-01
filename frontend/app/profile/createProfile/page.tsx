@@ -57,6 +57,14 @@ const ProfileForm: React.FC<ProfileFormProps> = () => {
 
 
     const router = useRouter();
+const token =localStorage.getItem('token')
+    axios.interceptors.request.use(config => {
+
+        if (token) {
+          config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+      });
 
     const createProfile = async () => {
         if (!(fullName && email && profession && bio && city && photo && backgroundImage)) {
