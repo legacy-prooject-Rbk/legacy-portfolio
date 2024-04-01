@@ -1,8 +1,9 @@
 "use client"
 
-import React, { useState, ChangeEvent } from "react";
+import React, { useState,useMemo, ChangeEvent } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface ProfileFormProps {}
 
@@ -121,6 +122,16 @@ const token =localStorage.getItem('token')
 
         setBackgroundImage(selectedImage);
     };
+    const queryParams = useMemo(() => ({
+        fullName,
+        email,
+        profession,
+        bio,
+        city,
+        // Convert file to a string representation or a URL to pass in query (assuming these are images or small files)
+        photo: photo ? URL.createObjectURL(photo) : '',
+        backgroundImage: backgroundImage ? URL.createObjectURL(backgroundImage) : ''
+    }), [fullName, email, profession, bio, city, photo, backgroundImage]);
 
     return (
         <div className="flex justify-center">
@@ -193,6 +204,8 @@ const token =localStorage.getItem('token')
                         </div>
                     </div>
                     <div className="float-end">
+                   
+                        <Link href={{pathname: '/interests',query: { ...queryParams }}} >
                         <button
                             className="primary-button"
                             onClick={()=>{createProfile()
@@ -202,6 +215,7 @@ const token =localStorage.getItem('token')
                         >
                             Next
                         </button>
+                        </Link>
                     </div>
                 </div>
         </div>
