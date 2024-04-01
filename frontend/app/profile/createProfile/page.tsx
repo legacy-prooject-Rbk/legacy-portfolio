@@ -4,6 +4,8 @@ import React, { useState, ChangeEvent } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
+interface ProfileFormProps {}
+
 const tunisiaStates = [
     "Ariana",
     "Beja",
@@ -31,7 +33,17 @@ const tunisiaStates = [
     "Zaghouan"
 ];
 
-const ProfileForm = () => {
+interface FormDataValues {
+    fullName: string;
+    email: string;
+    profession: string;
+    bio: string;
+    city: string;
+    photo: File | null;
+    backgroundImage: File | null;
+}
+
+const ProfileForm: React.FC<ProfileFormProps> = () => {
     const [email, setEmail] = useState<string>("");
     const [photo, setPhoto] = useState<File | null>(null);
     const [backgroundImage, setBackgroundImage] = useState<File | null>(null);
@@ -52,7 +64,7 @@ const ProfileForm = () => {
             return;
         }
         try {
-            const formValues = {
+            const formValues: FormDataValues = {
                 fullName,
                 email,
                 profession,
@@ -63,7 +75,7 @@ const ProfileForm = () => {
             };
             const formData = new FormData();
             for (const key in formValues) {
-                formData.append(key, formValues[key]);
+                formData.append(key, formValues[key] as string | Blob);
             }
 
             const { data } = await axios.post(
@@ -188,4 +200,4 @@ const ProfileForm = () => {
    
     )}
 
-    export default ProfileForm;
+export default ProfileForm;
