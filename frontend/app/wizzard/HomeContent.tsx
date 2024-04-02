@@ -164,7 +164,7 @@ const HomeContent: NextPage = () => {
         </h2>
         <div className="flex flex-wrap justify-center gap-4">
           {cards.map((card) => (
-            <Link key={card.id} href={`/OneCard/${card.id}`} passHref>
+            <Link key={card.id} href={`/portfolio/${card.id}`} passHref>
               <div className="bg-white rounded-lg shadow-lg p-4 text-center mb-4 cursor-pointer">
                 <Image
                   src={card.photo}
