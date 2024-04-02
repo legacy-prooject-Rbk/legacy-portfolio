@@ -10,37 +10,44 @@ function Login() {
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+   
     // const { id } = useParams();
     const router = useRouter()
+    function generateRandomNumber() {
+
+      localStorage.setItem("code",Math.floor(Math.random() * 10000)); 
+    }
+    
   
-    // const sendsms = () => {
-    //   const myHeaders = new Headers();
-    //   myHeaders.append("Authorization", "App d1042f2ad1f68a7b808591ac06fd727a-d315c77c-431c-4099-bc6c-e283a9ef4d6a");
-    //   myHeaders.append("Content-Type", "application/json");
-    //   myHeaders.append("Accept", "application/json");
+    const sendsms = () => {
+    
+      const myHeaders = new Headers();
+      myHeaders.append("Authorization", "App d1042f2ad1f68a7b808591ac06fd727a-d315c77c-431c-4099-bc6c-e283a9ef4d6a");
+      myHeaders.append("Content-Type", "application/json");
+      myHeaders.append("Accept", "application/json");
   
-    //   const raw = JSON.stringify({
-    //     "messages": [
-    //       {
-    //         "destinations": [{ "to": "21694289822" }],
-    //         "from": "ProPlex",
-    //         "text": `Hello ${username}, you have successfuly logged in `
-    //       }
-    //     ]
-    //   });
+      const raw = JSON.stringify({
+        "messages": [
+          {
+            "destinations": [{ "to": "21694289822" }],
+            "from": "ProPlex",
+            "text": `Hello ${username}, here is your verification code ${localStorage.getItem("code")}  `
+          }
+        ]
+      });
   
-    //   const requestOptions = {
-    //     method: "POST",
-    //     headers: myHeaders,
-    //     body: raw,
-    //     redirect: "follow"
-    //   };
+      const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+      };
   
-    //   fetch("https://1vnzkn.api.infobip.com/sms/2/text/advanced", requestOptions)
-    //     .then((response) => response.text())
-    //     .then((result) => console.log(result))
-    //     .catch((error) => console.error(error));
-    // }
+      fetch("https://1vnzkn.api.infobip.com/sms/2/text/advanced", requestOptions)
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.error(error));
+    }
   
   
     const login = async (username:String, password:String) => {
@@ -50,24 +57,26 @@ function Login() {
           username: username,
           password: password
         })
-   
+      
+       sendsms()
+       router.push("/verify")
         console.log(result)
         const token = result.data.token
         const id = result.data.payload.userId
         localStorage.setItem("token", token)
         localStorage.setItem("userId", id)
   
-        const Portfolio = await axios.get(`http://localhost:3000/api/portfolio/user/${id}`)
-        // to get the profile  of an user 
+        // const Portfolio = await axios.get(`http://localhost:3000/api/portfolio/user/${id}`)
+        // // to get the profile  of an user 
   
-        console.log(Portfolio)
+        // console.log(Portfolio)
    
-        if (!Portfolio.data) {                /// if the user has no profile he needs to  create a profile 
-          router.push("/profile/createProfile")
-        }
-        else if (Portfolio.data) {               /// if  the user has a profile he will be directed to it 
-          router.push("/profile")
-        }
+        // if (!Portfolio.data) {                /// if the user has no profile he needs to  create a profile 
+        //   router.push("/profile/createProfile")
+        // }
+        // else if (Portfolio.data) {               /// if  the user has a profile he will be directed to it 
+        //   router.push("/profile")
+        // }
       } catch (error) {
         alert("check your information and try again")
         console.log(error)
@@ -110,6 +119,7 @@ function Login() {
             type="button"
             className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             onClick={() => {
+              generateRandomNumber()
               login(username, password);
             }}
           >
