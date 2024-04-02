@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
+import axios from 'axios'
 
 
 type Interest = {
@@ -18,7 +19,8 @@ type Props = {
     console.log(queryParams.searchParams)
     const searchParams = queryParams.searchParams
   const [interests, setInterests] = useState<Interest[]>([]);
-  const [selectedInterests, setSelectedInterests] = useState<string[]>([]);;
+  const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
+  const [selected, setSelected] = useState({})
   const router = useRouter();
 
   useEffect(() => {
@@ -51,6 +53,19 @@ type Props = {
     });
   };
 
+  const submitInterests = async () => {
+    try {
+        // map the interest indexes to ids
+        const interestIds = Object.keys(selected).map(index => interests[index].id)
+        // send them to the endpoint to add them to the related portfolio
+       const {data} = await axios.post('http://127.0.0.1:3000/api/interest/user/' + searchParams.UserId, { interests: interestIds })
+        console.log(data)
+       setSelected([])
+    } catch (error) {
+        console.log(error);
+    }
+}
+
   return (
     <div className="container mx-auto px-4 py-8">
     <h2 className="text-2xl font-bold mb-4">Select your interests:</h2>
@@ -80,7 +95,7 @@ type Props = {
       </ul>
     </div>
     <Link href={{ pathname: '/contacts', query: { ...searchParams, Interests: selectedInterests } }}>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={submitInterests}>
           NEXT
         </button>
       </Link>
