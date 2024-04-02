@@ -31,7 +31,6 @@ const HomeContent: NextPage = () => {
         "http://localhost:3000/api/portfolio"
       );
       setPortfolio(response.data);
-      console.log(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -195,29 +194,6 @@ const HomeContent: NextPage = () => {
           </div>
         </div>
       </div>
-
-      <div className="container mx-auto py-16">
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-10">
-          DISCOVER Trends
-        </h2>
-        <div className="flex flex-wrap justify-center gap-4">
-          {trends.map((trend) => (
-            <div key={trend.id} className="w-48">
-              <div className="bg-white rounded-lg shadow-lg p-4 text-center mb-4 cursor-pointer transform hover:scale-105 transition-transform duration-200">
-                <Image
-                  src={trend.photo}
-                  alt={trend.fullName}
-                  width={80}
-                  height={80}
-                  objectFit="cover"
-                  className="rounded-full mx-auto"
-                />
-                <h3 className="font-bold text-gray-800 mt-2">{trend.fullName}</h3>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
       <div className="flex flex-wrap justify-center gap-4">
   {cards.map((card) => (
     <Link key={card.id} href={`/portfolio/${card.id}`} passHref>
@@ -240,6 +216,29 @@ const HomeContent: NextPage = () => {
     </Link>
   ))}
 </div>
+      <div className="container mx-auto py-16">
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-10">
+          DISCOVER Trends
+        </h2>
+        <div className="flex flex-wrap justify-center gap-4">
+          {trends.map((trend) => (
+            <div key={trend.id} className="w-48">
+              <div className="bg-white rounded-lg shadow-lg p-4 text-center mb-4 cursor-pointer transform hover:scale-105 transition-transform duration-200">
+                <Image
+                  src={trend.photo}
+                  alt={trend.fullName}
+                  width={80}
+                  height={80}
+                  objectFit="cover"
+                  className="rounded-full mx-auto"
+                />
+                <h3 className="font-bold text-gray-800 mt-2">{trend.fullName}</h3>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+     
       </div>
 
    
