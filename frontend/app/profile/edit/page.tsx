@@ -25,12 +25,12 @@ const Edit: React.FC = () => {
     const [bio, setBio] = useState<string>("");
     const [city, setCity] = useState<string>("");
     const [fullName, setFullName] = useState<string>("");
-
+    const [portfolioId,setPortfolioId]=useState(0)
     const [card, setCard] = useState<PortfolioItem | null>(null);
 
-    const id = localStorage.getItem("userId");
     const router = useRouter();
     const token = localStorage.getItem('token')
+    const id = localStorage.getItem("userId");
     axios.interceptors.request.use(config => {
 
         if (token) {
@@ -45,11 +45,14 @@ const Edit: React.FC = () => {
 
     useEffect(() => {
         if (card) {
+            setPortfolioId(card.id)
             setEmail(card.email);
             setProfession(card.profession);
             setBio(card.bio);
             setCity(card.city);
             setFullName(card.fullName);
+            setPhoto(card.photo);
+            setBackgroundImage(card.backgroundImage);
         }
     }, [card]);
 
@@ -85,7 +88,6 @@ const Edit: React.FC = () => {
             photo,
             backgroundImage,
         };
-        console.log(formValues);
         const formData = new FormData();
         for (const key in formValues) {
             if (formValues[key] !== null) {
@@ -94,9 +96,8 @@ const Edit: React.FC = () => {
         }
         if (id) {
             axios
-                .put(`http://localhost:3000/api/portfolio/${id}`, formData)
-                .then((result) => {console.log(formData,'aaaa')
-                ,console.log(result), router.push('/profile') })
+                .put(`http://localhost:3000/api/portfolio/${portfolioId}`, formData)
+                .then(() => {router.push('/profile') })
                 .catch((error) => {
                     console.log(error);
                 });
