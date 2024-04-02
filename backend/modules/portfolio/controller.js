@@ -109,35 +109,38 @@ const search = async (req, res) => {
 
 const update = async (req, res) => {
   try {
-    let [photo, backgroundImage] = req.files;
+    console.log(req.params)
+    // Check if req.files exists and has the files needed
+    const files = req.files || {};
+    const { photo, backgroundImage } = files;
     const { id } = req.params;
-    const { fullName, email, profession, bio } = req.body;
+    const updateData = { ...req.body };
+
+    async function handleFileUpload(file) {
+      const b64 = Buffer.from(file.buffer).toString("base64");
+      let dataURI = "data:" + file.mimetype + ";base64," + b64;
+      let uploadResult = await handleUpload(dataURI);
+      return uploadResult.secure_url;
+    }
+
     if (photo) {
-      const b64 = Buffer.from(photo.buffer).toString("base64");
-      let dataURI1 = "data:" + photo.mimetype + ";base64," + b64;
-      let photoUpload = await handleUpload(dataURI1);
-
-      photo = photoUpload.secure_url;
-      const result = await Portfolio.update({ photo }, { where: { id: id } });
+      updateData.photo = await handleFileUpload(photo);
     }
+
     if (backgroundImage) {
-      const b64 = Buffer.from(backgroundImage.buffer).toString("base64");
-      let dataURI1 = "data:" + backgroundImage.mimetype + ";base64," + b64;
-      let photoUpload = await handleUpload(dataURI1);
-
-      backgroundImage = photoUpload.secure_url;
-      const result = await Portfolio.update(
-        { backgroundImage },
-        { where: { id: id } }
-      );
+      updateData.backgroundImage = await handleFileUpload(backgroundImage);
     }
-    const result = await Portfolio.update(
-      { fullName, email, profession, bio },
-      { where: { id: id } }
-    );
-    res.status(201).json(result);
+
+    const result = await Portfolio.update(updateData, { where: { id } });
+    console.log(result)
+    if (result[0] > 0) {
+      res.status(200).json({ message: 'Update successful', result });
+    } else {
+      res.status(404).json({ message: 'Portfolio not found' });
+    }
   } catch (error) {
-    res.status(201).send(error);
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error', error: error.message });
   }
 };
 

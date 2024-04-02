@@ -40,7 +40,7 @@ const Navbar = () => {
     const authNavItems = [
         { id: 3, title: '🏠 Home', path: "/" }, 
         { id: 4, title: '👤 Profile', path: "/profile" }, 
-        { id: 5, title: 'Edit Profile', path: "/edit" }, 
+        { id: 5, title: 'Edit Profile', path: "/profile/edit" }, 
         { id: 6, title: 'Contacts', path: "/wizard/contacts" }, 
         { id: 7, title: 'Interests', path: "/wizard/interests" }, 
     ];

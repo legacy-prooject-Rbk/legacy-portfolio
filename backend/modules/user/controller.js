@@ -10,7 +10,7 @@ module.exports = {
         where: { username: username },
       });
       if (checkusername) {
-        res.status(400).json({ error: "username already exist " });
+      return   res.status(400).json({ error: "username already exist " });
       }
 
       const hashpassword = await bcrypt.hash(password, 10); /// this is  to encrypt your passsword
