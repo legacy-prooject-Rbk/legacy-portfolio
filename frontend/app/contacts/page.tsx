@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 //import { useRouter } from 'next/router';
 import Link from 'next/link';
+import axios from "axios"
+import ContactModal from '../components/ContactModal';
 
 type Contact = {
   id: number;
@@ -10,12 +12,18 @@ icon : string;
 link :  string
 };
 
-const Contacts: React.FC = () => {
+type Props = {
+  searchParams: string; 
+};
+
+const Contacts: React.FC<Props> = ({ searchParams }) => {
+  console.log(searchParams)
   const [contacts, setContacts] = useState<Contact []>([]);
-  const [selectedcontacts, setSelectedContacts] = useState<number[]>([]);
+  const [selectedContact, setSelectedContact] = useState<Contact>();
 
   const fetchContacts = async () => {
     try {
+     
       const res = await fetch('http://127.0.0.1:3000/api/SocialPlatform');
       if (!res.ok) {
         throw new Error('Failed to fetch data');
@@ -31,6 +39,22 @@ const Contacts: React.FC = () => {
     fetchContacts();
   }, []);
 
+  const submitContact = async (contactId: number, value: string) => {
+    console.log(`Contact ID: ${contactId}, Value: ${value}`);
+    try {
+      const userId = localStorage.getItem('userId')
+     const {data} = await axios.post('http://127.0.0.1:3000/api/SocialPlatform/user/' + userId , { contactId, value })
+console.log(data)
+     // fetchPortfolio()
+  } catch (error) {
+      console.log(error);
+  }
+}
+
+const onClose = () => {
+  setSelectedContact(null);
+};
+  
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -42,14 +66,19 @@ const Contacts: React.FC = () => {
               src={`http://127.0.0.1:3000/socials/${contact.icon}`}
               alt={contact.name}
               style={{ width: '100px', height: '100px' }}
-              className="rounded-full"
+              className="rounded-full cursor-pointer"
+              onClick={() => setSelectedContact(contact)}
             />
           </div>
         ))}
       </div>
+      {selectedContact && (
+        <ContactModal platform={selectedContact} submitContact={submitContact} onClose={onClose} />
+      )}
       <div className="mt-8">
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          <Link href="/">NEXT</Link>
+    
+          <Link href={{ pathname:"/profile" , query: { ...searchParams, Contacts }}}> Finish</Link>
         </button>
       </div>
     </div>
