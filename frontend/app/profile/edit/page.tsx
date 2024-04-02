@@ -4,6 +4,33 @@ import axios from "axios";
 import Navbar from "../../components/Navbar";
 import { useRouter } from "next/navigation";
 
+const tunisiaStates = [
+    "Ariana",
+    "Beja",
+    "Ben Arous",
+    "Bizerte",
+    "Gabes",
+    "Gafsa",
+    "Jendouba",
+    "Kairouan",
+    "Kasserine",
+    "Kebili",
+    "Kef",
+    "Mahdia",
+    "Manouba",
+    "Medenine",
+    "Monastir",
+    "Nabeul",
+    "Sfax",
+    "Sidi Bouzid",
+    "Siliana",
+    "Sousse",
+    "Tataouine",
+    "Tozeur",
+    "Tunis",
+    "Zaghouan"
+];
+
 interface PortfolioItem {
     id: number;
     fullName: string;
@@ -25,7 +52,7 @@ const Edit: React.FC = () => {
     const [bio, setBio] = useState<string>("");
     const [city, setCity] = useState<string>("");
     const [fullName, setFullName] = useState<string>("");
-    const [portfolioId,setPortfolioId]=useState(0)
+    const [portfolioId, setPortfolioId] = useState(0)
     const [card, setCard] = useState<PortfolioItem | null>(null);
 
     const router = useRouter();
@@ -61,7 +88,6 @@ const Edit: React.FC = () => {
             axios
                 .get<PortfolioItem>(`http://localhost:3000/api/portfolio/user/${id}`)
                 .then((response) => {
-                    console.log(response.data);
                     setCard(response.data);
                 })
                 .catch((error) => {
@@ -97,7 +123,7 @@ const Edit: React.FC = () => {
         if (id) {
             axios
                 .put(`http://localhost:3000/api/portfolio/${portfolioId}`, formData)
-                .then(() => {router.push('/profile') })
+                .then(() => { router.push('/profile') })
                 .catch((error) => {
                     console.log(error);
                 });
@@ -121,8 +147,8 @@ const Edit: React.FC = () => {
     return (
         <div>
             <Navbar />
-            <div className="flex justify-center">
-                <div className="py-4 px-5 bg-white rounded border-2 shadow-md">
+            <div className="flex justify-center ">
+                <div className="py-4 px-5 bg-white rounded border-2 shadow-md mt-10">
                     <div className="grid grid-cols-2 z-1 divide-x-2">
                         <div className="max-w-md mx-auto my-10 p-6">
                             <div className="mb-4">
@@ -182,16 +208,14 @@ const Edit: React.FC = () => {
                                 }}
                                 className="w-full px-3 py-2 mb-4 text-gray-700 border rounded"
                             />
-
-                            <input
-                                type="text"
-                                placeholder="City"
-                                value={city}
-                                onChange={(event) => {
-                                    setCity(event.target.value);
-                                }}
+                            <select
+                                onChange={(event) => setCity(event.target.value)}
                                 className="w-full px-3 py-2 mb-4 text-gray-700 border rounded"
-                            />
+                                value={city}
+                            >
+                                <option value={''}>City...</option>
+                                {tunisiaStates.map(city => <option value={city} key={city}>{city}</option>)}
+                            </select>
 
                             <div className="flex justify-between">
                                 <label htmlFor="">Background Image</label>
