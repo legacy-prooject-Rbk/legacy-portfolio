@@ -19,7 +19,7 @@ interface PortfolioItem {
 
 
 function Profile() {
-    const [portfolio, setPortfolio] = useState<PortfolioItem[]>([])
+    const [portfolio, setPortfolio] = useState<PortfolioItem>()
     const userId = localStorage.getItem('userId')
 
     useEffect(() => {
@@ -47,7 +47,7 @@ function Profile() {
                             className="flex bg-center justify-center items-center bg-gray-100 h-80 "
                         >
                             <img
-                                src={portfolio.photo }
+                                src={portfolio.photo as any }
                                 alt=""
                                 className="w-36 h-36 rounded-full object-cover bg-center translate-y-[50px] mr-96 mb-64"
                             />
@@ -63,14 +63,14 @@ function Profile() {
                                     </ul>
                                 </div>
                                 <div className="px-3 flex flex-wrap py-3">
-                                    {/* {portfolio.Interests.map((item, i) => (
+                                    {portfolio.Interests.map((item, i) => (
                             <div
                                 key={`interests${i}`}
                                 className="interest-tag"
                             >
                                 {item.name}
                             </div>
-                        ))} */}
+                        ))}
                                 </div>
                             </div>
                             <div className="grid gap-1 mt-2 divide-x">
@@ -78,12 +78,12 @@ function Profile() {
                                     {portfolio.bio}
                                 </p>
                                 <div className="user-socials py-3">
-                                    {/* {portfolio.Contacts && portfolio.Contacts.map(item => (
+                                    {portfolio.Contacts && portfolio.Contacts.map(item => (
                             <div key={item.id} className="user-social">
                                 <img src={`http://127.0.0.1:3000/socials/${item.icon}`} alt="" />
                                 <div className="user-contact">{item.Contact.value}</div>
                             </div>
-                        ))} */}
+                        ))}
                                 </div>
                             </div>
                         </div>
