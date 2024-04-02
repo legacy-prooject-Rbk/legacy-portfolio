@@ -56,7 +56,7 @@ const Navbar = () => {
 
         <nav className="nav-bar bg-amber-600 h-20">
             <div className="nav-logo" onClick={() => router.push('/')}>
-                ProPlex
+               .
                
             </div>
             <div className="flex mr-auto ml-[200px] space-x-12">
