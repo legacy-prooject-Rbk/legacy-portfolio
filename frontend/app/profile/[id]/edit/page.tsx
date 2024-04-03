@@ -1,7 +1,7 @@
 "use client"
 import React, { useState, useEffect, ChangeEvent } from "react";
 import axios from "axios";
-import Navbar from "../../components/Navbar";
+import Navbar from "../../../components/Navbar";
 import { useRouter } from "next/navigation";
 
 const tunisiaStates = [
@@ -123,8 +123,11 @@ const Edit: React.FC = () => {
         if (id) {
             axios
                 .put(`http://localhost:3000/api/portfolio/${portfolioId}`, formData)
-                .then(() => { router.push('/profile') })
+                .then(() => { 
+                    router.push(`/profile/${id}`)
+                    router.refresh() })
                 .catch((error) => {
+                    
                     console.log(error);
                 });
         }

@@ -28,7 +28,7 @@ function page() {
         router.push("/profile/createProfile")
       }
       else if (Portfolio.data) {               /// if  the user has a profile he will be directed to it 
-        router.push("/profile")
+        router.push(`/profile${id}`)
       }
     }
   } catch (error) {

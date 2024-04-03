@@ -39,10 +39,10 @@ const Navbar = () => {
 
     const authNavItems = [
         { id: 3, title: '🏠 Home', path: "/" }, 
-        { id: 4, title: '👱🏻‍♂️ Profile', path: "/profile" }, 
-        { id: 5, title: ' 🖊️ Edit Profile', path: "/profile/edit" }, 
+        { id: 4, title: '👱🏻‍♂️ Profile', path: `/profile/${userId}` }, 
+        { id: 5, title: ' 🖊️ Edit Profile', path: `/profile/${userId}/edit`}, 
         { id: 6, title: ' 🌐 Contacts/Interests', path: "/interests" }, 
-        // { id: 7, title: 'Interests', path: "/interests/edit" }, 
+       
     ];
 
     const handleLogout = () => {
@@ -57,7 +57,7 @@ const Navbar = () => {
             <div className="nav-logo" onClick={() => router.push('/')}>
              .  
             </div>
-            <div className="flex mr-auto ml-[200px] space-x-12 flex items-center  ">
+            <div className=" mr-auto ml-[200px] space-x-12 flex items-center  ">
                 {userId ? (
                     authNavItems.map(item => (
                        <div key={item.id} // Ensure each key is unique
