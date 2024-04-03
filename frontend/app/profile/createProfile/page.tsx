@@ -141,7 +141,7 @@ const ProfileForm: React.FC<ProfileFormProps> = () => {
 
     return (
         <div className="flex justify-center">
-            <div className="py-4 px-5 bg-white rounded border-[1px] mt-2 border-[#E24724] shadow-md">
+            <div className="py-4 px-5 bg-white rounded border-[1px] mt-20 border-[#909090] shadow-md">
                 <div className="grid grid-cols-2 z-1 divide-x-2">
                     <div className="max-w-md mx-auto my-10 p-6">
                         <div className="mb-4">
@@ -213,7 +213,7 @@ const ProfileForm: React.FC<ProfileFormProps> = () => {
                    
                         <Link href={{pathname: '/interests',query: { ...queryParams }}} >
                         <button
-                            className="primary-button"
+                            className="primary-button   bg-amber-700 hover:bg-amber-800 text-white font-bold py-2 px-4 rounded mt-96"
                             onClick={ createProfile}>
                             Next
                         </button>

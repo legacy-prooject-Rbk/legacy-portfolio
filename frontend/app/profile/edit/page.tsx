@@ -148,7 +148,7 @@ const Edit: React.FC = () => {
         <div>
             <Navbar />
             <div className="flex justify-center ">
-                <div className="py-4 px-5 bg-white rounded border-2 shadow-md mt-10 border-[1px] border-[#909090]">
+                <div className="py-4 px-5 bg-white rounded border-2 shadow-md mt-10 border-[1px] border-[#E24724]">
                     <div className="grid grid-cols-2 z-1 divide-x-2">
                         <div className="max-w-md mx-auto my-10 p-6">
                             <div className="mb-4">
@@ -230,7 +230,7 @@ const Edit: React.FC = () => {
                     </div>
                     <div className="float-end"></div>
                     <button
-                        className="btn btn-success"
+                        className="bg-amber-700 hover:bg-amber-800 text-white font-bold py-2 px-4 rounded ml-96"
                         onClick={() => {
                             updated(
                                 fullName,
