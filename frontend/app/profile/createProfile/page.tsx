@@ -97,6 +97,7 @@ const ProfileForm: React.FC<ProfileFormProps> = () => {
             );
             setPortfolio(data)
             router.push('/interests')
+            console.log(data)
 
         } catch (error) {
             console.log(error);
@@ -213,28 +214,14 @@ const ProfileForm: React.FC<ProfileFormProps> = () => {
                         <Link href={{pathname: '/interests',query: { ...queryParams }}} >
                         <button
                             className="primary-button"
-                            onClick={()=>{createProfile()
-                                
-                            }}
-                            
-                        >
+                            onClick={ createProfile}>
                             Next
                         </button>
                         </Link>
                     </div>
 
                 </div>
-                <div className="float-end">
-                    <button
-                        className="primary-button"
-                        onClick={() => {
-                            createProfile()
-                            console.log(portfolio)
-                        }}
-                    >
-                        Next
-                    </button>
-                </div>
+                
             </div>
         </div>
 
