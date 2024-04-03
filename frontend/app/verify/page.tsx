@@ -9,13 +9,13 @@ import axios from 'axios'
 
 
 function page() {
-    const [verificationCode,setVerificationCode]=useState(0)
+    const [verificationCode,setVerificationCode]=useState<Number>(0)
     const router = useRouter()
 
     const verify = async (code:Number)=>{
       
       try{
-    const verification = localStorage.getItem("code")
+    const verification  = localStorage.getItem("code")
     const id = localStorage.getItem("userId")
     console.log(id)
    if(code===verification){
@@ -38,9 +38,11 @@ function page() {
    }
     }
   return (
-    <div className="mx-auto max-w-xs">
-  <div className="mt-8 flex flex-col items-center">
+    <div className="flex justify-center items-center h-screen bg-gray-100">
+      
+  <div className="mt-8   w-[400px] flex flex-col items-center">
     <div className="w-full mb-4">
+      
       <label htmlFor="verificationCode" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Verification Code</label>
       <input
         id="verificationCode"
@@ -52,7 +54,7 @@ function page() {
     </div>
     <button
       type="button"
-      className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      className="w-full bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded"
       onClick={() => {
         verify(verificationCode)
       }}
