@@ -88,50 +88,48 @@ function Login() {
 
   return (
   
-    
-      <div className="mx-auto max-w-xs">
-        <div className="mt-8 flex flex-col items-center">
-          <div className="m-1 bg-blue-500 rounded-full p-3 text-white">
-           
-          </div>
-          <h1 className="text-2xl font-bold mb-4">Sign In</h1>
-          <div className="w-full mb-4">
-            <label htmlFor="username" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">UserName</label>
-            <input
-              id="username"
-              type="text"
-              className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              placeholder="Username"
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </div>
-          <div className="w-full mb-6">
-            <label htmlFor="password" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Password</label>
-            <input
-              id="password"
-              type="password"
-              className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <button
-            type="button"
-            className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            onClick={() => {
-              generateRandomNumber()
-              login(username, password);
-            }}
-          >
-            Sign In
-          </button>
-          <div className="mt-4 text-gray-700 text-sm text-right">
-            <span className="cursor-pointer hover:text-blue-600"    onClick={() => router.push("/signup")} >
-              Don't have an account? Sign up
-            </span>
-          </div>
+    <div className="flex justify-center items-center h-screen bg-gray-100">
+    <div className="mx-auto w-[550px] border-[1px] p-8">
+      <div className="flex flex-col items-center">
+        <div className="m-1 bg-orange-500 rounded-full p-3 text-white"></div>
+        <h1 className="text-2xl font-bold mb-4">Sign In</h1>
+        <div className="w-full mb-4">
+          <label htmlFor="username" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">UserName</label>
+          <input
+            id="username"
+            type="text"
+            className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            placeholder="Username"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+        <div className="w-full mb-6">
+          <label htmlFor="password" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Password</label>
+          <input
+            id="password"
+            type="password"
+            className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <button
+          type="button"
+          className="w-full bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded"
+          onClick={() => {
+            generateRandomNumber()
+            login(username, password);
+          }}
+        >
+          Sign In
+        </button>
+        <div className="mt-4 text-gray-700 text-sm text-right">
+          <span className="cursor-pointer hover:text-blue-600" onClick={() => router.push("/signup")}>Don't have an account? Sign up</span>
         </div>
       </div>
+    </div>
+  </div>
+  
     )
   
 }
