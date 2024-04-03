@@ -17,7 +17,7 @@ type Props = {
 };
 
 const Contacts: React.FC<Props> = ({ searchParams }) => {
-  console.log(searchParams)
+  console.log('from contact page',searchParams)
   const [contacts, setContacts] = useState<Contact []>([]);
   const [selectedContact, setSelectedContact] = useState<Contact>();
 
@@ -39,11 +39,13 @@ const Contacts: React.FC<Props> = ({ searchParams }) => {
     fetchContacts();
   }, []);
 
-  const submitContact = async (contactId: number, value: string) => {
-    console.log(`Contact ID: ${contactId}, Value: ${value}`);
+  const submitContact = async (platformId: number, value: string) => {
+    console.log(`Contact ID: ${platformId}, Value: ${value}`);
     try {
       const userId = localStorage.getItem('userId')
-     const {data} = await axios.post('http://127.0.0.1:3000/api/SocialPlatform/user/' + userId , { contactId, value })
+      console.log({ platformId, value });
+      
+     const {data} = await axios.post('http://127.0.0.1:3000/api/SocialPlatform/user/' + userId , { platformId, value })
 console.log(data)
      // fetchPortfolio()
   } catch (error) {
