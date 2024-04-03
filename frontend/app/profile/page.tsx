@@ -54,62 +54,62 @@ function Profile() {
   return (
     <div>
       <Navbar />
-      <div className="flex justify-center mt-2 mx-auto font-[Overpass]">
+      <div className="flex justify-center mt-8">
         {portfolio && (
-          <div className="w-[700px] mx-auto my-3 rounded border-[1px] border-[#909090] overflow-hidden shadow-md bg-white">
+          <div className="w-[700px] mx-auto bg-white shadow-md rounded-lg overflow-hidden border-[1px] border-[#E24724]">
             <div
-              style={{
-                backgroundImage: `url(${portfolio.backgroundImage})`,
-                backgroundSize: "cover",
-              }}
-              className="flex bg-center justify-center items-center bg-gray-100 h-80 "
+              className="bg-gray-200 bg-cover bg-center h-64 flex items-center justify-center"
+              style={{ backgroundImage: `url(${portfolio.backgroundImage})` }}
             >
               <img
-                src={portfolio.photo as any}
+                src={portfolio.photo || ""}
                 alt=""
-                className="w-36 h-36 rounded-full object-cover bg-center translate-y-[50px] mr-96 mb-64"
+                className="w-32 h-32 rounded-full border-4 border-white shadow-lg"
               />
             </div>
-            <div className="p-3 mt-[50px]">
-              <h2 className="text-center text-2xl mt-3 text-orange-400 font-bold capitalize ">
+            <div className="p-6">
+              <h2 className="text-2xl font-semibold text-gray-800 capitalize text-center">
                 {portfolio.fullName}
               </h2>
-              <h3 className="text-center text-gray-600 mt-1 font-medium">
-                {portfolio.profession}
-              </h3>
-              <div className="grid grid-cols-2 mt-2 divide-x">
-                <div className="mt-4 px-3 text-[18px]">
-                  <ul className="divide-y">
-                    <li className="text-gray-700">📧 {portfolio.email}</li>
-                    <li className="text-gray-600 mt-2">📍 {portfolio.city}</li>
-                  </ul>
-                </div>
-                <div className="px-3 flex flex-wrap py-3">
-                  {portfolio.Interests &&
-                    portfolio.Interests.map((item, i) => (
-                      <div key={`interests${i}`} className="interest-tag">
-                        {item.name}
-                      </div>
-                    ))}
-                </div>
-              </div>
-              <div className="grid gap-1 mt-2 divide-x">
-                <p className="text-gray-600 p-3 w-full border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300">
-                  {portfolio.bio}
+              <p className="text-sm text-gray-600 text-center">{portfolio.profession}</p>
+              <div className="mt-4">
+                <p className="text-gray-700">
+                  📧 {portfolio.email}
+                  <br />
+                  📍 {portfolio.city}
                 </p>
-                <div className="user-socials py-3">
-  {portfolio.Contacts &&
-    portfolio.Contacts.map((contact) => (
-      <div key={contact.id} className="user-social">
-        <img
-          src={`http://127.0.0.1:3000/socials/${contact.icon}`}
-          alt={contact.name}
-          className="w-12 h-12" 
-        />
-        <div className="user-contact">{contact.name}</div>
-      </div>
-    ))}
-</div>
+              </div>
+              <div className="mt-4 flex flex-wrap">
+                {portfolio.Interests.map((item, i) => (
+                  <div
+                    key={i}
+                    className="bg-gray-200 text-gray-800 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2"
+                  >
+                    {item.name}
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6">
+                <p className="text-gray-700">{portfolio.bio}</p>
+              </div>
+              <div className="mt-6 flex">
+                {portfolio.Contacts.map((contact, index) => (
+                  <div key={index} className="mr-4 flex items-center">
+                    <img
+                      src={`http://127.0.0.1:3000/socials/${contact.icon}`}
+                      alt={contact.name}
+                      className="w-8 h-8 mr-2"
+                    />
+                    <a
+                      href={contact.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-700 hover:text-blue-500"
+                    >
+                      {contact.name}
+                    </a>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

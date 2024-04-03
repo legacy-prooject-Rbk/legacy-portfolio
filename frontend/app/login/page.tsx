@@ -58,25 +58,25 @@ function Login() {
           password: password
         })
       
-       sendsms()
-       router.push("/verify")
+      //  sendsms()
+      //  router.push("/verify")
         console.log(result)
         const token = result.data.token
         const id = result.data.payload.userId
         localStorage.setItem("token", token)
         localStorage.setItem("userId", id)
   
-        // const Portfolio = await axios.get(`http://localhost:3000/api/portfolio/user/${id}`)
-        // // to get the profile  of an user 
+        const Portfolio = await axios.get(`http://localhost:3000/api/portfolio/user/${id}`)
+        // to get the profile  of an user 
   
-        // console.log(Portfolio)
+        console.log(Portfolio)
    
-        // if (!Portfolio.data) {                /// if the user has no profile he needs to  create a profile 
-        //   router.push("/profile/createProfile")
-        // }
-        // else if (Portfolio.data) {               /// if  the user has a profile he will be directed to it 
-        //   router.push("/profile")
-        // }
+        if (!Portfolio.data) {                /// if the user has no profile he needs to  create a profile 
+          router.push("/profile/createProfile")
+        }
+        else if (Portfolio.data) {               /// if  the user has a profile he will be directed to it 
+          router.push("/profile")
+        }
       } catch (error) {
         alert("check your information and try again")
         console.log(error)
