@@ -54,7 +54,7 @@ function Profile() {
   return (
     <div>
       <Navbar />
-      <div className="flex justify-center mt-8">
+      <div className="flex justify-center mt-8 h-auto">
         {portfolio && (
           <div className="w-[700px] mx-auto bg-white shadow-md rounded-lg overflow-hidden border-[1px] border-[#E24724]">
             <div
@@ -92,9 +92,9 @@ function Profile() {
               <div className="mt-6">
                 <p className="text-gray-700">{portfolio.bio}</p>
               </div>
-              <div className="mt-6 flex">
+              <div className="mt-6 flex flex-wrap">
                 {portfolio.Contacts.map((contact, index) => (
-                  <div key={index} className="mr-4 flex items-center">
+                  <div key={index} className="mr-4 flex items-center flex-wrap">
                     <img
                       src={`http://127.0.0.1:3000/socials/${contact.icon}`}
                       alt={contact.name}
