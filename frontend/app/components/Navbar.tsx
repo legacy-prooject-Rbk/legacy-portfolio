@@ -33,22 +33,21 @@ const Navbar = () => {
 
     const navItems = [
         { id: 0, title: '🏠 Home', path: "/" },
-        { id: 1, title: '👤 Login', path: "/login" },
-        { id: 2, title: '👤 Register', path: "/signup" }, 
+        { id: 1, title: '👱🏻‍♂️ Login', path: "/login" },
+        { id: 2, title: '👱🏻‍♂️ Register', path: "/signup" }, 
     ];
 
     const authNavItems = [
         { id: 3, title: '🏠 Home', path: "/" }, 
-        { id: 4, title: '👤 Profile', path: "/profile" }, 
-        { id: 5, title: 'Edit Profile', path: "/profile/edit" }, 
-        { id: 6, title: 'Contacts/Interests', path: "/interests" }, 
+        { id: 4, title: '👱🏻‍♂️ Profile', path: "/profile" }, 
+        { id: 5, title: ' 🖊️ Edit Profile', path: "/profile/edit" }, 
+        { id: 6, title: ' 🌐 Contacts/Interests', path: "/interests" }, 
         // { id: 7, title: 'Interests', path: "/interests/edit" }, 
     ];
 
     const handleLogout = () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("userId");
-        router.reload();
+        localStorage.clear()
+        router.push('/login');
     };
 
    
@@ -56,15 +55,15 @@ const Navbar = () => {
 
         <nav className="nav-bar bg-amber-600 h-20">
             <div className="nav-logo" onClick={() => router.push('/')}>
-               .
-               
+             .  
             </div>
-            <div className="flex mr-auto ml-[200px] space-x-12">
+            <div className="flex mr-auto ml-[200px] space-x-12 flex items-center  ">
                 {userId ? (
                     authNavItems.map(item => (
-                        <div key={item.id} // Ensure each key is unique
-                            className={router.pathname == item.path ? `nav-item-active` : `nav-item`}
+                       <div key={item.id} // Ensure each key is unique
+                        className={`${router.pathname == item.path ? 'nav-item-active' : 'nav-item'} hover:bg-white cursor-pointer rounded-full px-3 py-1 text-sm font-semibold text-lg  `}
                             onClick={() => router.push(item.path)}
+                    
                         >
                             {item.title}
                         </div>
@@ -76,10 +75,13 @@ const Navbar = () => {
                             onClick={() => router.push(item.path)}
                         >
                             {item.title}
+                            <div> <h1 onClick={handleLogout}>Logout </h1> </div>
                         </div>
+                        
                     ))
                 )}
             </div>
+            
 
             {portfolio && (
                 <div
