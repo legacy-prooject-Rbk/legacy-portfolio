@@ -209,19 +209,19 @@ const ProfileForm: React.FC<ProfileFormProps> = () => {
 
                     </div>
 
-                    <div className="float-end">
+
+                </div>
+                
+                    <div className="float-end h-1">
                    
                         <Link href={{pathname: '/interests',query: { ...queryParams }}} >
                         <button
-                            className="primary-button   bg-amber-700 hover:bg-amber-800 text-white font-bold py-2 px-4 rounded mt-96"
+                            className="bg-amber-700 hover:bg-amber-800 text-white font-bold py-2 px-4 rounded mt-10"
                             onClick={ createProfile}>
                             Next
                         </button>
                         </Link>
                     </div>
-
-                </div>
-                
             </div>
         </div>
 
