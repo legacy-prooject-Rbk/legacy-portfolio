@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -40,14 +39,10 @@ const Interests = ({ searchParams }: InterestsProps) => {
 
   const handleInterestToggle = (interest: Interest) => {
     setSelectedInterests((currentSelectedInterests) => {
-      const isAlreadySelected = currentSelectedInterests.includes(
-        interest.id
-      );
+      const isAlreadySelected = currentSelectedInterests.includes(interest.id);
       if (isAlreadySelected) {
         // If the interest's name is already selected, remove it from the selection
-        return currentSelectedInterests.filter(
-          (id) => id !== interest.id
-        );
+        return currentSelectedInterests.filter((id) => id !== interest.id);
       } else {
         // If the interest's name is not selected, add it to the selection
         return [...currentSelectedInterests, interest.id];
@@ -57,16 +52,10 @@ const Interests = ({ searchParams }: InterestsProps) => {
 
   const submitInterests = async () => {
     try {
-      // map the interest indexes to ids
-      // const interestIds = selectedInterests.map((index) => interests[index].id);
-     
-      // return;
-      const userId = localStorage.getItem('userId')
-      // send them to the endpoint to add them to the related portfolio
-      const { data } = await axios.post(
-        "http://127.0.0.1:3000/api/interest/user/" + userId,
-        { interests: selectedInterests }
-      );
+      const userId = localStorage.getItem("userId");
+      await axios.post("http://127.0.0.1:3000/api/interest/user/" + userId, {
+        interests: selectedInterests,
+      });
       setSelected([]);
     } catch (error) {
       console.log(error);
@@ -91,20 +80,8 @@ const Interests = ({ searchParams }: InterestsProps) => {
           </li>
         ))}
       </ul>
-      <div className="mt-8">
-        <h3 className="text-xl font-bold mb-4">Selected  interests:</h3>
-        <ul>
-          {selectedInterests.map((name) => (
-            <li key={name} className="mb-2">
-              {name}
-            </li>
-          ))}
-        </ul>
-      </div>
+      <div className="mt-8"></div>
 
-      <Link href="/profile/createProfile">
-        <button className="primary-button ml-5"> Previous</button>
-      </Link>
       <Link
         href={{
           pathname: "/contacts",
