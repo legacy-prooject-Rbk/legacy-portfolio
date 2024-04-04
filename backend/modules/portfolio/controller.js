@@ -173,4 +173,21 @@ const getUserPortfolio = async (req, res) => {
   }
 };
 
-module.exports = { create, getAll, update, deleted, search, getUserPortfolio };
+const getByProfession = async (req, res) => {
+  try {
+    const profession = req.params.profession
+
+    const portfolios = await Portfolio.findAll({
+      where: { profession: profession },
+    })
+    res.status(200).json(portfolios)
+  } catch (error) {
+    console.error(error);
+    res.status(500).send(error)
+  }
+};
+
+
+
+
+module.exports = { create, getAll, update, deleted, search, getUserPortfolio,getByProfession };
