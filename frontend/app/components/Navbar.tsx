@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from "react";
-
+import axios from "axios";
 // import axios from "axios";
 // import Link from "next/link";
 
@@ -15,21 +15,7 @@ const Navbar = () => {
     const router = useRouter() // Using useRouter hook for client-side navigation
     const userId = localStorage.getItem('userId');
 
-    // useEffect(() => {
-    //     if (userId) {
-    //         fetchPortfolio();
-    //     }
-    // }, []);
-
-    // const fetchPortfolio = async () => {
-    //     try {
-    //         const { data } = await axios.get(`/api/portfolio/user/${userId}`);
-    //         setPortfolio(data);
-    //     } catch (error) {
-    //         console.error('Error fetching Portfolio ❌\n', error);
-    //         alert('Error fetching Portfolio ❌');
-    //     }
-    // };
+    
 
     const navItems = [
         { id: 0, title: '🏠 Home', path: "/" },
@@ -43,6 +29,7 @@ const Navbar = () => {
         { id: 5, title: ' 🖊️ Edit Profile', path: `/profile/${userId}/edit`}, 
         { id: 6, title: ' 🌐 Contacts/Interests', path: "/interests" }, 
        
+       
     ];
 
     const handleLogout = () => {
@@ -50,7 +37,7 @@ const Navbar = () => {
         router.push('/login');
     };
 
-   
+    console.log(portfolio)
     return (
 
         <nav className="nav-bar bg-amber-600 h-20">
@@ -58,46 +45,44 @@ const Navbar = () => {
              .  
             </div>
             <div className=" mr-auto ml-[200px] space-x-12 flex items-center  ">
+            
                 {userId ? (
-                    authNavItems.map(item => (
+                    authNavItems.map(item => (  
                        <div key={item.id} // Ensure each key is unique
-                        className={`${router.pathname == item.path ? 'nav-item-active' : 'nav-item'} hover:bg-white cursor-pointer rounded-full px-3 py-1 text-sm font-semibold text-lg  `}
+                        className={`${router.pathname == item.path ? 'nav-item-active' : 'nav-item'} hover:bg-white cursor-pointer rounded-full px-3 py-1 text-sm font-semibold text-lg`}
                             onClick={() => router.push(item.path)}
                     
                         >
                             {item.title}
+                            
                         </div>
                     ))
+                    
                 ) : (
                     navItems.map(item => (
-                        <div key={item.id} // Ensure each key is unique
-                            className=" hover:bg-white cursor-pointer rounded-full px-3 py-1 text-sm font-semibold text-lg"
+                        <div key={item.id} 
+                                               // Ensure each key is unique
+                            className=" hover:bg-white cursor-pointer rounded-full px-3 py-1 text-sm font-semibold "
                             onClick={() => router.push(item.path)}
-                        >
+                        > 
+                                                
                             {item.title}
-                            
+                              
                         </div>
                         
                     ))
                 )}
+                {userId ?     <button
+                            onClick={handleLogout}
+                            className="  hover:bg-white cursor-pointer rounded-full px-3 py-1 text-sm font-semibold ">↪ Logout</button> 
+                             : "" }
+                        
             </div>
             
 
-            {portfolio && (
-                <div
-                    style={{ backgroundImage: `url(${portfolio.photo})`, backgroundSize: 'cover' }}
-                    className="nav-bubble mr-11"
-                >
-                    <div className="nav-drop" >
-                        <div
-                            onClick={() => router.push('/edit')}
-                            className="drop-item">👤 Edit Profile</div>
-                        <div
-                            onClick={handleLogout}
-                            className="drop-item">↪ Logout</div>
-                    </div>
-                </div>
-            )}
+                        
+                    
+           
         </nav>
     );
 };
