@@ -4,9 +4,9 @@ import React,{useState} from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import PasswordChecklist from "react-password-checklist"
-
+import Navbar from '../components/Navbar'
 function Signup() {
-   
+    
   const[username,setUsername]=useState<String>("")
   const[password,setPassword]=useState<String>("")
   const [valid,setValid]=useState<Boolean>(false)
@@ -37,6 +37,8 @@ const router = useRouter()
   }
   }
   return (
+    <div>
+      <Navbar/>
     <div className="flex justify-center items-center h-screen bg-gray-100">
     <div className="mx-auto w-[550px] border-[1px] p-8">
       <div className="mt-8 flex flex-col items-center">
@@ -88,7 +90,7 @@ const router = useRouter()
       </div>
     </div>
   </div>
-  
+  </div>
   )
 }
 
