@@ -19,8 +19,7 @@ import Navbar from '../../components/Navbar'
    
    
   const data = await getData()
-    console.log(data,"test")
-   
+
     return (
         <div>
         <Navbar />

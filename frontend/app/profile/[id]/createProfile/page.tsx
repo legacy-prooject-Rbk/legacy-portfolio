@@ -99,7 +99,6 @@ const ProfileForm: React.FC<ProfileFormProps> = () => {
             );
             setPortfolio(data)
             router.push('/interests')
-            console.log(data)
 
         } catch (error) {
             console.log(error);

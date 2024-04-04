@@ -11,8 +11,6 @@ function Signup() {
   const[password,setPassword]=useState<String>("")
   const [valid,setValid]=useState<Boolean>(false)
 
-  console.log(username,password)
-
 const router = useRouter()
 
 
@@ -22,13 +20,10 @@ const router = useRouter()
     axios.post("http://localhost:3000/api/users/signup",{
       username:username,
       password:password
-    }).then((result)=>{
-      
-      console.log(result)
+    }).then(()=>
       router.push("/login")
     
-   
-    }).catch((error)=>{
+    ).catch((error)=>{
       console.log(error)
     })
   }

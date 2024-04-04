@@ -17,13 +17,10 @@ function page() {
       try{
     const verification  = localStorage.getItem("code")
     const id = localStorage.getItem("userId")
-    console.log(id)
    if(code===verification){
       const Portfolio = await axios.get(`http://localhost:3000/api/portfolio/user/${id}`)
       // to get the profile  of an user 
-  
-      console.log(Portfolio)
-  
+
       if (!Portfolio.data) {                /// if the user has no profile he needs to  create a profile 
         router.push("/profile/createProfile")
       }
