@@ -5,6 +5,7 @@
 import React,{useState} from 'react'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
+import Navbar from '../components/Navbar'
 function Login() {
 
 
@@ -87,7 +88,8 @@ function Login() {
 
 
   return (
-  
+    <div><Navbar/>
+   
     <div className="flex justify-center items-center h-screen bg-gray-100">
     <div className="mx-auto w-[550px] border-[1px] p-8">
       <div className="flex flex-col items-center">
@@ -128,6 +130,7 @@ function Login() {
         </div>
       </div>
     </div>
+  </div>
   </div>
   
     )
