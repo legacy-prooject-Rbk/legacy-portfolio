@@ -128,6 +128,8 @@ const Edit: React.FC = () => {
             }
         }
         if (id) {
+            console.log(formData);
+            
             axios
                 .put(`http://localhost:3000/api/portfolio/${portfolioId}`, formData)
                 .then(() => {
@@ -143,15 +145,7 @@ const Edit: React.FC = () => {
     // Handler for photo change
     const handlePhotoChange = (event: ChangeEvent<HTMLInputElement>) => {
         const selectedImage = event.target.files && event.target.files[0];
-        if (selectedImage) {
-            const reader = new FileReader();
-            reader.onload = () => {
-                setPhoto(reader.result as any);
-            };
-            reader.readAsDataURL(selectedImage);
-            console.log(selectedImage);
-
-        }
+    setPhoto(selectedImage);
     };
 
     // Handler for background image change
