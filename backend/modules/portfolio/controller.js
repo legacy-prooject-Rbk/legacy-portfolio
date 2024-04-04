@@ -111,34 +111,40 @@ const update = async (req, res) => {
   try {
     // Check if req.files exists and has the files needed
     const files = req.files || {};
-    const { photo, backgroundImage } = files;
+    const [photo, backgroundImage] = req.files;
     const { id } = req.params;
     const updateData = { ...req.body };
-
-    async function handleFileUpload(file) {
-      const b64 = Buffer.from(file.buffer).toString("base64");
-      let dataURI = "data:" + file.mimetype + ";base64," + b64;
-      let uploadResult = await handleUpload(dataURI);
-      return uploadResult.secure_url;
-    }
+console.log(typeof req.body.photo);
+    console.log("tesssssssssssss", photo);
 
     if (photo) {
-      updateData.photo = await handleFileUpload(photo);
+      // reconstruct buffer to base64
+      const b64 = Buffer.from(photo.buffer).toString("base64");
+      let dataURI1 = "data:" + photo.mimetype + ";base64," + b64;
+      let photoUpload = await handleUpload(dataURI1);
+      updateData.photo = photoUpload.secure_url;
+      console.log(updateData, "data");
     }
+console.log(typeof backgroundImage);
 
     if (backgroundImage) {
-      updateData.backgroundImage = await handleFileUpload(backgroundImage);
+      const b64 = Buffer.from(photo.buffer).toString("base64");
+      let dataURI2 = "data:" + photo.mimetype + ";base64," + b64;
+      let ImageUpload = await handleUpload(dataURI2);
+      updateData.backgroundImage =ImageUpload.secure_url;
     }
-
+console.log(updateData)
     const result = await Portfolio.update(updateData, { where: { id } });
     if (result[0] > 0) {
-      res.status(200).json({ message: 'Update successful', result });
+      res.status(200).json({ message: "Update successfuul", result });
     } else {
-      res.status(404).json({ message: 'Portfolio not found' });
+      res.status(404).json({ message: "Portfolio not found" });
     }
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Internal server error', error: error.message });
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
   }
 };
 
@@ -173,19 +179,24 @@ const getUserPortfolio = async (req, res) => {
 
 const getByProfession = async (req, res) => {
   try {
-    const profession = req.params.profession
+    const profession = req.params.profession;
 
     const portfolios = await Portfolio.findAll({
       where: { profession: profession },
-    })
-    res.status(200).json(portfolios)
+    });
+    res.status(200).json(portfolios);
   } catch (error) {
     console.error(error);
-    res.status(500).send(error)
+    res.status(500).send(error);
   }
 };
 
-
-
-
-module.exports = { create, getAll, update, deleted, search, getUserPortfolio,getByProfession };
+module.exports = {
+  create,
+  getAll,
+  update,
+  deleted,
+  search,
+  getUserPortfolio,
+  getByProfession,
+};
