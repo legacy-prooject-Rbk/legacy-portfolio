@@ -196,8 +196,7 @@ const HomeContent: NextPage = () => {
       </div>
       <div className="flex flex-wrap justify-center gap-4">
   {cards.map((card) => (
-    <Link key={card.id} href={`/portfolio/${card.id}`} passHref>
-
+   <Link key={card.id} href={`/portfolio/${card.id}`} passHref>
         <div className="bg-white rounded-xl overflow-hidden shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-2xl max-w-xs w-full">
           <Image
             src={card.photo}
@@ -216,28 +215,25 @@ const HomeContent: NextPage = () => {
     </Link>
   ))}
 </div>
-      <div className="container mx-auto py-16">
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-10">
-          DISCOVER Trends
-        </h2>
-        <div className="flex flex-wrap justify-center gap-4">
-          {trends.map((trend) => (
-            <div key={trend.id} className="w-48">
-              <div className="bg-white rounded-lg shadow-lg p-4 text-center mb-4 cursor-pointer transform hover:scale-105 transition-transform duration-200">
-                <Image
-                  src={trend.photo}
-                  alt={trend.fullName}
-                  width={80}
-                  height={80}
-                  objectFit="cover"
-                  className="rounded-full mx-auto"
-                />
-                <h3 className="font-bold text-gray-800 mt-2">{trend.fullName}</h3>
-              </div>
-            </div>
-          ))}
+<div className="flex flex-wrap justify-center gap-4">
+  {trends.map((trend) => (
+    <Link key={trend.id} href={`/profession/${trend.fullName}`} >   
+        <div className="bg-white rounded-lg shadow-lg p-4 text-center mb-4 cursor-pointer transform hover:scale-105 transition-transform duration-200">
+          <Image
+            src={trend.photo}
+            alt={trend.fullName}
+            width={80}
+            height={80}
+            objectFit="cover"
+            className="rounded-full mx-auto"
+          />
+          <h3 className="font-bold text-gray-800 mt-2">{trend.fullName}</h3>
         </div>
-      </div>
+      
+    </Link>
+  ))}
+</div>
+      
      
       </div>
 
