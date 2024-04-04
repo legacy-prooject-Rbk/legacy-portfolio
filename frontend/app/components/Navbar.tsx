@@ -71,11 +71,11 @@ const Navbar = () => {
                 ) : (
                     navItems.map(item => (
                         <div key={item.id} // Ensure each key is unique
-                            className="nav-item"
+                            className=" hover:bg-white cursor-pointer rounded-full px-3 py-1 text-sm font-semibold text-lg"
                             onClick={() => router.push(item.path)}
                         >
                             {item.title}
-                            <div> <h1 onClick={handleLogout}>Logout </h1> </div>
+                            
                         </div>
                         
                     ))
