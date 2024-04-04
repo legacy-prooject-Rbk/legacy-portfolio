@@ -62,11 +62,14 @@ const HomeContent: NextPage = () => {
         }
       );
       setCards(response.data);
+      if (response.data.length === 0) {
+        alert('No matching professionals or cities found.');
+      }
     } catch (error) {
       console.error("Error fetching data:", error);
+      alert('An error occurred while searching. Please try again.');
     }
-  };
-
+  }
   const cities = [
     "Ariana",
     "Beja",
@@ -195,26 +198,29 @@ const HomeContent: NextPage = () => {
         </div>
       </div>
       <div className="flex flex-wrap justify-center gap-4">
-  {cards.map((card) => (
-   <Link key={card.id} href={`/portfolio/${card.id}`} passHref>
-        <div className="bg-white rounded-xl overflow-hidden shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-2xl max-w-xs w-full">
-          <Image
-            src={card.photo}
-            alt={card.fullName}
-            width={320} 
-            height={320} 
-            objectFit="cover"
-            className="rounded-t-xl" 
-          />
-          <div className="px-6 py-4">
-            <h3 className="font-bold text-xl text-gray-800">{card.fullName}</h3>
-            <h3 className="font-bold text-xl text-gray-800">{card.city}</h3>
-          </div>
-        </div>
-     
-    </Link>
-  ))}
-</div>
+        {cards.length > 0 ? (
+          cards.map((card) => (
+            <Link key={card.id} href={`/portfolio/${card.id}`} passHref>
+              <div className="bg-white rounded-xl overflow-hidden shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-2xl w-64"> {/* Adjusted width */}
+                <Image
+                  src={card.photo}
+                  alt={card.fullName}
+                  width={256} 
+                  height={256} 
+                  objectFit="cover"
+                  className="rounded-t-xl"
+                />
+                <div className="px-6 py-4">
+                  <h3 className="font-bold text-xl text-gray-800">{card.fullName}</h3>
+                  <h3 className="font-bold text-xl text-gray-800">{card.city}</h3>
+                </div>
+              </div>
+            </Link>
+          ))
+        ) : (
+          <p className="text-gray-600">No professionals found. Try a different search.</p>
+        )}
+      </div>
 <div className="flex flex-wrap justify-center gap-4">
   {trends.map((trend) => (
     <Link key={trend.id} href={`/profession/${trend.fullName}`} >   
