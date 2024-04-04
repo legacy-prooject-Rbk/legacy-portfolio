@@ -128,8 +128,6 @@ const Edit: React.FC = () => {
             }
         }
         if (id) {
-            console.log(formData);
-            
             axios
                 .put(`http://localhost:3000/api/portfolio/${portfolioId}`, formData)
                 .then(() => {

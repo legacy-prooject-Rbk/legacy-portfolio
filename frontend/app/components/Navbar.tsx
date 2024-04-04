@@ -37,7 +37,6 @@ const Navbar = () => {
         router.push('/login');
     };
 
-    console.log(portfolio)
     return (
 
         <nav className="nav-bar bg-amber-600 h-20">
