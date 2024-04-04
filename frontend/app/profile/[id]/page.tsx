@@ -54,10 +54,11 @@ import Navbar from '../../components/Navbar'
                       <li className="text-gray-600 mt-2">📍 {data.city}</li>
                     </ul>
                   </div>
-                  <div className="px-3 flex flex-wrap py-3">
+                  <div className="mt-4 flex flex-wrap">
                     {data.Interests &&
                       data.Interests.map((item, i) => (
-                        <div key={`interests${i}`} className="interest-tag">
+                        <div key={`interests${i}`} className="bg-gray-200 text-gray-800 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2
+                        ">
                           {item.name}
                         </div>
                       ))}
@@ -67,7 +68,7 @@ import Navbar from '../../components/Navbar'
                   <p className="text-gray-600 p-3 w-full border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300">
                     {data.bio}
                   </p>
-                  <div className="user-socials py-3">
+                  <div className="mt-6 flex flex-wrap space-x-5 ">
     {data.Contacts &&
       data.Contacts.map((contact) => (
         <div key={contact.id} className="user-social">
