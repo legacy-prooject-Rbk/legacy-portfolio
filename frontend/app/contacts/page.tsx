@@ -23,7 +23,7 @@ const Contacts: React.FC<Props> = ({ searchParams }) => {
   const userId = localStorage.getItem('userId')
   const fetchContacts = async () => {
     try {
-     
+
       const res = await fetch('http://127.0.0.1:3000/api/SocialPlatform');
       if (!res.ok) {
         throw new Error('Failed to fetch data');
@@ -40,11 +40,11 @@ const Contacts: React.FC<Props> = ({ searchParams }) => {
   }, []);
 
   const submitContact = async (platformId: number, value: string) => {
-    console.log(`Contact ID: ${platformId}, Value: ${value}`);
+    //console.log(Contact ID: ${platformId}, Value: ${value});
     try {
       const userId = localStorage.getItem('userId')
       console.log({ platformId, value });
-      
+
      const {data} = await axios.post('http://127.0.0.1:3000/api/SocialPlatform/user/' + userId , { platformId, value })
 console.log(data)
      // fetchPortfolio()
@@ -56,19 +56,19 @@ console.log(data)
 const onClose = () => {
   setSelectedContact(null);
 };
-  
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h2 className="text-2xl font-bold mb-4"> Contacts:</h2>
+    <div className="flex justify-center mt-2 mx-auto font-[Overpass]">
+    <div className="container mx-auto px-4 py-8 w-[700px] my-3 rounded border-[1px] border-[#909090] overflow-hidden shadow-md bg-white">
+      <h2 className="text-2xl font-bold mb-4 text-center text-orange-400">Contacts:</h2>
       <div className="flex flex-wrap justify-center">
-        {contacts.map((contact: Contact) => (
+        {contacts.map((contact) => (
           <div key={contact.id} className="m-4">
             <img
               src={`http://127.0.0.1:3000/socials/${contact.icon}`}
               alt={contact.name}
-              style={{ width: '100px', height: '100px' }}
-              className="rounded-full cursor-pointer"
+              className="rounded-full cursor-pointer shadow-sm"
+              style={{ width: '60px', height: '60px' }}
               onClick={() => setSelectedContact(contact)}
             />
           </div>
@@ -77,14 +77,16 @@ const onClose = () => {
       {selectedContact && (
         <ContactModal platform={selectedContact} submitContact={submitContact} onClose={onClose} />
       )}
-      <div className="mt-8">
-        <button className=" bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">
-    
-          <Link href={{ pathname:`/profile/${userId}` , query: { ...searchParams, Contacts }}}> Finish</Link>
-        </button>
+      <div className="mt-8 flex justify-center">
+        <Link href={`/profile/${localStorage.getItem('userId')}`}>
+          <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded cursor-pointer">
+            Finish
+          </button>
+        </Link>
       </div>
     </div>
-  );
+  </div>
+);
 };
 
 export default Contacts;
