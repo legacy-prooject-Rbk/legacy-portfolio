@@ -20,7 +20,7 @@ const Contacts: React.FC<Props> = ({ searchParams }) => {
   console.log('from contact page',searchParams)
   const [contacts, setContacts] = useState<Contact []>([]);
   const [selectedContact, setSelectedContact] = useState<Contact>();
-
+  const userId = localStorage.getItem('userId')
   const fetchContacts = async () => {
     try {
      
@@ -78,9 +78,9 @@ const onClose = () => {
         <ContactModal platform={selectedContact} submitContact={submitContact} onClose={onClose} />
       )}
       <div className="mt-8">
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        <button className=" bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">
     
-          <Link href={{ pathname:"/profile" , query: { ...searchParams, Contacts }}}> Finish</Link>
+          <Link href={{ pathname:`/profile/${userId}` , query: { ...searchParams, Contacts }}}> Finish</Link>
         </button>
       </div>
     </div>

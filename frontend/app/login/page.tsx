@@ -72,10 +72,10 @@ function Login() {
         console.log(Portfolio)
    
         if (!Portfolio.data) {                /// if the user has no profile he needs to  create a profile 
-          router.push("/profile/createProfile")
+          router.push(`/profile/${id}/createProfile`)
         }
         else if (Portfolio.data) {               /// if  the user has a profile he will be directed to it 
-          router.push("/profile")
+          router.push(`/profile/${id}`)
         }
       } catch (error) {
         alert("check your information and try again")
