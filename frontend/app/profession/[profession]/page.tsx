@@ -10,7 +10,6 @@ interface PortfolioItem {
   bio: string;
 }
 
-// Add the correct props type for NextPage component with params
 interface PortfolioPageProps {
   params: {
     profession: string;
@@ -18,7 +17,6 @@ interface PortfolioPageProps {
 }
 
 const PortfolioPage: React.FC<PortfolioPageProps> = ({ params }) => {
-  // Destructure profession from params
   const { profession } = params;
   const [portfolios, setPortfolios] = useState<PortfolioItem[]>([]);
 
@@ -39,21 +37,26 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({ params }) => {
     }
   }, [profession]);
 
-  // Check for both the presence of profession and portfolios length
   if (profession && !portfolios.length) {
     return (
-      <div>No portfolio items found for the profession: {decodeURIComponent(profession)}.</div>
+      <div className="text-center py-10">
+        <p>No portfolio items found for the profession: {decodeURIComponent(profession)}.</p>
+      </div>
     );
   }
 
   return (
-    <div>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
       {portfolios.map((portfolio) => (
-        <div key={portfolio.id}>
-          <h2>{portfolio.email}</h2>
-          <h2>{portfolio.fullName}</h2>
-          <p>{portfolio.bio}</p>
-          <p>{portfolio.city}</p>
+        <div key={portfolio.id} className="border shadow-lg rounded-lg overflow-hidden">
+          <div className="p-4 bg-gray-100">
+            <h2 className="text-xl font-semibold">{portfolio.fullName}</h2>
+            <p className="text-gray-600">{portfolio.email}</p>
+          </div>
+          <div className="p-4">
+            <p className="text-sm text-gray-700">{portfolio.bio}</p>
+            <p className="text-sm text-gray-500">{portfolio.city}</p>
+          </div>
         </div>
       ))}
     </div>
