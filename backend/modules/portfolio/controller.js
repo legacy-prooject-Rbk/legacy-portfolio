@@ -109,7 +109,6 @@ const search = async (req, res) => {
 
 const update = async (req, res) => {
   try {
-    console.log(req.params)
     // Check if req.files exists and has the files needed
     const files = req.files || {};
     const { photo, backgroundImage } = files;
@@ -132,7 +131,6 @@ const update = async (req, res) => {
     }
 
     const result = await Portfolio.update(updateData, { where: { id } });
-    console.log(result)
     if (result[0] > 0) {
       res.status(200).json({ message: 'Update successful', result });
     } else {

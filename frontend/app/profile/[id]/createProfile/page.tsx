@@ -36,6 +36,7 @@ const tunisiaStates = [
     "Zaghouan"
 ];
 
+// Interface for form data values
 interface FormDataValues {
     id: Number;
     fullName: string;
@@ -71,6 +72,7 @@ const ProfileForm: React.FC<ProfileFormProps> = () => {
         return config;
     });
 
+    // Function to create a new profile
     const createProfile = async () => {
         if (!(fullName && email && profession && bio && city && photo && backgroundImage)) {
             alert('Fill All Data')
@@ -128,6 +130,8 @@ const ProfileForm: React.FC<ProfileFormProps> = () => {
 
         setBackgroundImage(selectedImage);
     };
+
+    // Memoized object of query parameters for the next page
     const queryParams = useMemo(() => ({
         fullName,
         email,

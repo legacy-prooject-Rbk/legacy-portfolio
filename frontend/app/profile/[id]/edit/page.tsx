@@ -2,7 +2,8 @@
 import React, { useState, useEffect, ChangeEvent } from "react";
 import axios from "axios";
 import Navbar from "../../../components/Navbar";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation"; // Importing useRouter hook from Next.js
+
 
 const tunisiaStates = [
     "Ariana",
@@ -31,6 +32,7 @@ const tunisiaStates = [
     "Zaghouan"
 ];
 
+// Interface defining the structure of PortfolioItem
 interface PortfolioItem {
     id: number;
     fullName: string;
@@ -58,6 +60,8 @@ const Edit: React.FC = () => {
     const router = useRouter();
     const token = localStorage.getItem('token')
     const id = localStorage.getItem("userId");
+
+    // Axios interceptor for setting Authorization header with token
     axios.interceptors.request.use(config => {
 
         if (token) {
@@ -70,6 +74,7 @@ const Edit: React.FC = () => {
         fetchOne();
     }, []);
 
+    // Setting state variables with fetched portfolio data
     useEffect(() => {
         if (card) {
             setPortfolioId(card.id)
@@ -83,6 +88,7 @@ const Edit: React.FC = () => {
         }
     }, [card]);
 
+    // Function to fetch portfolio data
     const fetchOne = () => {
         if (id) {
             axios
@@ -96,6 +102,7 @@ const Edit: React.FC = () => {
         }
     };
 
+    // Function to update portfolio data
     const updated = (
         fullName: string,
         email: string,
@@ -123,23 +130,31 @@ const Edit: React.FC = () => {
         if (id) {
             axios
                 .put(`http://localhost:3000/api/portfolio/${portfolioId}`, formData)
-                .then(() => { 
-                    router.push(`/profile/${id}`)
-                    router.refresh() })
+                .then(() => {
+                    router.push(`/profile/${id}`);
+                    router.refresh();
+                })
                 .catch((error) => {
-                    
                     console.log(error);
                 });
         }
     };
 
+    // Handler for photo change
     const handlePhotoChange = (event: ChangeEvent<HTMLInputElement>) => {
-        if (event.target.files && event.target.files.length > 0) {
-            const selectedImage = event.target.files[0];
-            setPhoto(selectedImage);
+        const selectedImage = event.target.files && event.target.files[0];
+        if (selectedImage) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                setPhoto(reader.result as any);
+            };
+            reader.readAsDataURL(selectedImage);
+            console.log(selectedImage);
+
         }
     };
 
+    // Handler for background image change
     const handleBackgroundImageChange = (event: ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files.length > 0) {
             const selectedImage = event.target.files[0];
@@ -244,6 +259,7 @@ const Edit: React.FC = () => {
                                 photo,
                                 backgroundImage
                             );
+
                         }}
                     >
                         Edit
