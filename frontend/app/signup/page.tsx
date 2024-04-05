@@ -61,7 +61,7 @@ const router = useRouter()
           <PasswordChecklist
             rules={["minLength","specialChar","number","capital"]}
             minLength={5}
-            value={password}
+            value={password as string}
             onChange={(isValid) => {
               if(isValid===true)
                 setValid(true)

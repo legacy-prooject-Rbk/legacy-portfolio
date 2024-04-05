@@ -17,7 +17,7 @@ function page() {
       try{
     const verification  = localStorage.getItem("code")
     const id = localStorage.getItem("userId")
-   if(code===verification){
+   if(code as any===verification){
       const Portfolio = await axios.get(`http://localhost:3000/api/portfolio/user/${id}`)
       // to get the profile  of an user 
 
@@ -46,7 +46,7 @@ function page() {
         type="text"
         className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
         placeholder="Verification Code"
-        onChange={(e) => setVerificationCode(e.target.value)}
+        onChange={(e) => setVerificationCode(e.target.value as any)}
       />
     </div>
     <button

@@ -55,7 +55,7 @@ import Navbar from '../../components/Navbar'
                   </div>
                   <div className="mt-4 flex flex-wrap">
                     {data.Interests &&
-                      data.Interests.map((item, i) => (
+                      data.Interests.map((item:any, i:any) => (
                         <div key={`interests${i}`} className="bg-gray-200 text-gray-800 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2
                         ">
                           {item.name}
@@ -69,7 +69,7 @@ import Navbar from '../../components/Navbar'
                   </p>
                   <div className="mt-6 flex flex-wrap space-x-5 ">
     {data.Contacts &&
-      data.Contacts.map((contact) => (
+      data.Contacts.map((contact:any) => (
         <div key={contact.id} className="user-social">
           <img
             src={`http://127.0.0.1:3000/socials/${contact.icon}`}
