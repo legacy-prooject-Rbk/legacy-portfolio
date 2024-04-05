@@ -51,7 +51,7 @@ const Contacts: React.FC<Props> = ({ searchParams }) => {
 }
 
 const onClose = () => {
-  setSelectedContact(null);
+  setSelectedContact(null as any);
 };
 
   return (

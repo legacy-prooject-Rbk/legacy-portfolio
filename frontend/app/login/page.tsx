@@ -9,14 +9,14 @@ import Navbar from '../components/Navbar'
 function Login() {
 
 
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
+  const [username, setUsername] = useState<String>("")
+  const [password, setPassword] = useState<String>("")
 
   // const { id } = useParams();
   const router = useRouter()
   function generateRandomNumber() {
 
-    localStorage.setItem("code", Math.floor(Math.random() * 10000));
+    localStorage.setItem("code", Math.floor(Math.random() * 10000).toString());
   }
 
 
@@ -44,7 +44,7 @@ function Login() {
       redirect: "follow"
     };
 
-    fetch("https://1vnzkn.api.infobip.com/sms/2/text/advanced", requestOptions)
+    fetch("https://1vnzkn.api.infobip.com/sms/2/text/advanced", requestOptions as any)
       .then((response) => response.text())
       .catch((error) => console.error(error));
   }

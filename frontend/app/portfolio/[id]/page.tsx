@@ -27,7 +27,7 @@ interface PortfolioItem {
   Contacts: Contact[];
 }
 
-const PortfolioDetails: React.FC = ({params}) => {
+const PortfolioDetails: React.FC = ({params}:any) => {
 //   const router = useRouter();
 
   const { id } =params;
